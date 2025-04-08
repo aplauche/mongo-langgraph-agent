@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npx ts-node index.ts",
-    "seed": "npx ts-node seed.ts"
+    "seed": "npx ts-node seed.ts",
+    "studio": "MODE=studio npx @langchain/langgraph-cli dev",
+    "studio:dev": "MODE=studio npx @langchain/langgraph-cli dev"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "@langchain/core": "^0.3.42",
     "@langchain/langgraph": "^0.2.54",
     "@langchain/langgraph-checkpoint-mongodb": "^0.0.6",
+    "@langchain/langgraph-cli": "^0.0.20",
     "@langchain/mongodb": "^0.1.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

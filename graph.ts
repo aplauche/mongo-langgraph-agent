@@ -182,5 +182,25 @@ const client = new MongoClient(process.env.MONGODB_ATLAS_URI as string);
 
   // This compiles it into a LangChain Runnable.
   // Note that we're passing the memory when compiling the graph
-  export const app = workflow.compile();
+
+
+  // export const app = workflow.compile();
   // const app = workflow.compile({ checkpointer });
+
+  let app;
+
+  if (process.env.MODE === "studio") {
+
+    // No checkpointer for studio version since it handles internally 
+    app = workflow.compile();
+
+  } else {
+
+    // Initialize the MongoDB memory to persist state between graph runs
+    const checkpointer = new MongoDBSaver({ client, dbName });
+
+    app = workflow.compile({ checkpointer });
+    
+  }
+
+  export { app };
